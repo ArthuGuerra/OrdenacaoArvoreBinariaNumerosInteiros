@@ -1,0 +1,154 @@
+printf( "%d", myNum );
+
+
+
+
+
+especificadores de formato
+
+int myNum = numero 
+
+printf("%d",myNum)
+
+
+
+
+
+%c = char
+
+char myLetra = ' nome ';
+
+print("%c", myLetra);
+
+
+
+
+
+
+%f = float
+
+
+float preco = 50.6;
+
+printf("%f", preco);
+
+
+
+
+tipos de variaveis
+
+int = numeros inteiros
+
+float = numeros de ponto flutuante, com decimais 
+
+
+char = armazena caracteres unicos como ou . os caracteres sao cercados por aspas simplessssssss ' a ' ' b '
+
+
+
+
+
+
+Faça a saída do exemplo a seguir para mostrar apenas um dígito após o ponto decimal:
+
+
+float myScore = 9.5;
+printf("%.1f", myScore)       // apenas 1 digito apos o ponto decimal 
+
+
+
+
+char = %c
+
+string = %s 
+
+double = %lf 
+
+float = %f
+
+
+
+
+
+Para imprimir tipos diferentes em uma única função, você pode usar o botão seguinte:printf()
+
+Exemplo
+int myNum = 15;
+char myLetter = 'D';
+printf("My number is %d and my letter is %c", myNum, myLetter);
+
+
+
+
+
+
+
+
+
+
+
+QUANDO FOR STRING, NOME GRANDE EU BOTO:
+
+char = " "   == aspas duplas 
+
+printf("%s", variavel)
+
+
+
+
+
+
+
+
+
+
+Para realmente obter o tamanho (em bytes) de um tipo de dados ou variável, use o operador:sizeof
+
+
+
+
+int myInt;
+float myFloat;
+double myDouble;
+char myChar;
+
+printf("%lu\n", sizeof(myInt));
+printf("%lu\n", sizeof(myFloat));
+printf("%lu\n", sizeof(myDouble));
+printf("%lu\n", sizeof(myChar));
+
+
+
+
+
+
+
+float sum = (float) 5 / 2;
+
+printf("%f", sum); // 2.500000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A expressão numero = rand() % 1000 + 1; está utilizando a função rand() para gerar um número aleatório e depois manipulando esse número para que ele fique dentro de um intervalo específico. Vamos quebrar isso em partes:
+
+rand():
+
+A função rand() gera um número inteiro aleatório. O valor retornado por rand() é um número pseudoaleatório que varia entre 0 e RAND_MAX, onde RAND_MAX é uma constante definida na biblioteca padrão de C (normalmente é um valor grande, como 32767).
+% 1000:
+
+O operador % é o operador de módulo. Quando você usa rand() % 1000, ele retorna o resto da divisão do número aleatório gerado por 1000. Isso resulta em um número entre 0 e 999 (inclusivo), pois o módulo sempre retorna um valor menor que o divisor.
+Portanto, essa parte da expressão mapeia o número aleatório gerado para um intervalo de 0 a 999.
++ 1:
+
+Após a operação de módulo, adicionamos 1 ao resultado. Isso muda o intervalo de 0-999 para 1-1000. Assim, o menor número que numero pode ser é 1 (quando rand() retorna 0) e o maior é 1000 (quando rand() retorna 999).

@@ -4,9 +4,7 @@
 #include <time.h>
 
 
-
-#define TAMANHO 100   // SEM INT SEM ; bizarro kkkkkk
-
+const int TAMANHO = 100;
 
 
 struct Alunos
@@ -33,9 +31,8 @@ int jaExisteNumeros(int numeros[],int tamanho,int numero )
 
 /*
 
-
     Descrição dos campos:
-    int valor;  --------- Esse campo é usado para armazenar um valor inteiro associado ao nó. Em uma árvore binária, geralmente esse valor é o dado que queremos organizar na estrutura.
+    int conteudo  --------- Esse campo é usado para armazenar um valor inteiro associado ao nó. Em uma árvore binária, geralmente esse valor é o dado que queremos organizar na estrutura.
 
     struct No *esquerdo, *direito;   ==  Esses são dois ponteiros que apontam para os filhos do nó atual:
 
@@ -120,7 +117,11 @@ void inserir(Arvb *arv, int valor)
 {
     if(arv->raiz == NULL)
     {
-        No *novo = (No*)malloc(sizeof(No));
+        No *novo = (No*)malloc(sizeof(No));     // malloc = alocar memoria para esse novo nó 
+        if(novo ==NULL)
+        {
+            return;
+        }
         novo->conteudo = valor;
         novo -> esquerdo = NULL;
         novo -> direito = NULL;
@@ -141,26 +142,55 @@ void inserir(Arvb *arv, int valor)
 
 
 
-
 void imprimir(No *raiz)
 {
     if(raiz != NULL)
     {
-        printf("\nraiz: %d ", raiz->conteudo);
-
-        imprimir(raiz->esquerdo);
-        imprimir(raiz->direito);
+        printf("\nraiz: %d ", raiz->conteudo);      /* ele pode pedir pra alterar aqui. Desse jeito ta em Pré ordem. primeiro a raiz, esquerda e direita*/ 
+        imprimir(raiz->esquerdo);                   ///  em ordem  é esquerda, raiz e direita. 
+        imprimir(raiz->direito);                    /// e pos ordem é a nossa, esquerda, direita e raiz
+                                                    //// ele pode pedir pra alterar essa primeira impressao em alguma outra ordem por exemplo
     }
 }
 
 
 
 
+void pos_ordem(No *no_pos)
+{
+
+    if(no_pos == NULL)  /// e se o nó for nulo, a função simplesmente retorna (para evitar acessar ponteiros nulos).
+    {
+        return;
+    }
+    if(no_pos -> esquerdo != NULL)   /// Se o nó esquerdo existe, a função chama recursivamente a si mesma para processar a subárvore esquerda.
+    {
+        pos_ordem(no_pos->esquerdo);
+    }
+     if(no_pos -> direito != NULL)  //  Se o nó direito existe, a função chama recursivamente a si mesma para processar a subárvore direita.
+    {
+        pos_ordem(no_pos->direito);
+    }
+    printf("%d\n", no_pos->conteudo);
+}
+
+
+void percorrer_pos_ordem(Arvb *arvore)
+{
+    if(arvore -> raiz != NULL )
+    {
+        pos_ordem(arvore->raiz);
+    }
+}
+
+
+////// ----------------------------------------------------------------------------//// 
+
 int main()
 {
     strcpy(Aluno.nome, "Arthur Guerra");
     Aluno.matricula = 202208901069;
-    printf("Quem fez o código: %s\n", Aluno.nome);
+    printf("Aluno 1: %s\n", Aluno.nome);
     printf("Matrícula: %lld\n", Aluno.matricula);
 
     int ultimoDigito1 = Aluno.matricula % 10;
@@ -169,8 +199,8 @@ int main()
 
     struct Alunos Aluno2;
 
-    strcpy(Aluno2.nome, "Irineu");
-    Aluno2.matricula = 222222222222;
+    strcpy(Aluno2.nome, "Alice ");
+    Aluno2.matricula = 202302375189;
     printf("\nInutil 1 : %s\n", Aluno2.nome);
     printf("Matrícula: %lld\n", Aluno2.matricula);
 
@@ -178,8 +208,8 @@ int main()
 
     struct Alunos Aluno3;
 
-    strcpy(Aluno3.nome, "Voce nao sabe");
-    Aluno3.matricula = 333333333333;
+    strcpy(Aluno3.nome, "Pau Lino");
+    Aluno3.matricula = 202302450873;
     printf("\nInutil 2 : %s\n", Aluno3.nome);
     printf("Matrícula: %lld\n", Aluno3.matricula);
 
@@ -187,8 +217,8 @@ int main()
 
     struct Alunos Aluno4;
 
-    strcpy(Aluno4.nome, "Nem eu");
-    Aluno4.matricula = 444444444444;
+    strcpy(Aluno4.nome, "Eduardo");
+    Aluno4.matricula = 202302674712;
     printf("\nInutil 3 : %s\n", Aluno4.nome);
     printf("Matrícula: %lld\n", Aluno4.matricula);
 
@@ -196,8 +226,8 @@ int main()
 
     struct Alunos Aluno5;
 
-    strcpy(Aluno5.nome, "KEWK");
-    Aluno5.matricula = 555555555555;
+    strcpy(Aluno5.nome, "João Pedro");
+    Aluno5.matricula = 202103689809;
     printf("\nInutil 4 : %s\n", Aluno5.nome);
     printf("Matrícula: %lld\n", Aluno5.matricula);
 
@@ -218,7 +248,7 @@ int main()
 
     while (i < TAMANHO)
     {
-        numero = rand() % 1000 + 1;
+        numero = rand() % 1000 + 1;     // pode mudar aqui 
 
         if (!jaExisteNumeros(vetor,i,numero))
         {
@@ -234,10 +264,23 @@ int main()
         printf("%d - ", vetor[i]);
     }
 
+    
+    // criando um vetor nao ordenado para a arvore
+    int vetorArvore[TAMANHO];
+
+
+    for(int i = 0; i < TAMANHO; i++)
+    {
+        vetorArvore[i] = vetor[i];
+    }
+
 
     if ( sum == 0 )
     {
-        // bubble sort lento  nao indicado a listas grandes
+        //  bubble sort lento  nao indicado a listas grandes 
+        //  compara o 1 item com o segundo item
+        //  agora o segundo com o terceiro e assim por diante
+        //
 
         int flag = 1;       // 1 é true e 0 é false
         int count = 0;
@@ -246,7 +289,7 @@ int main()
         {
             flag = 0;
 
-            for(int i =0; i < TAMANHO - 2; i++ ) 
+            for(int i =0; i <= TAMANHO - 2; i++ ) 
             {
                 if(vetor[i] > vetor[i+1])
                 {
@@ -278,6 +321,10 @@ int main()
     else if (sum == 1)
     {
      
+        // compara as 2 primeiras posiçoes, no caso 0 e 1
+        // depois ele compara o 0 com o proximo, no caso o 2 
+
+
         int count = 0;      // 1 é true e 0 é false
 
         for(int i =0; i < TAMANHO - 1; i++ ) 
@@ -312,21 +359,22 @@ int main()
         double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
         printf("\nQuantidade de comparações: %d", count);
         printf("\nTempo de Execução: %.6lf", tempo_execucao);
-
-
     }
     else
-    {
-        
-         // 1 é true e 0 é false
+    {        
+        // 1 é true e 0 é false
+
+        // O laço começa na segunda posição do vetor (i = 1), porque o primeiro elemento (posição 0) já pode ser considerado como ordenado.
+  
+        // Em cada iteração, o algoritmo pega o valor da posição atual (atual = vetor[i]) e o insere no lugar correto nos elementos anteriores que já estão ordenados.
       
         int countComparacao = 0;
         for(int i =1; i < TAMANHO; i++ ) 
         {
-            int atual = vetor[i];
+            int atual = vetor[i];  // atual = 10
             int j = i -1;
             
-            while (j >= 0 && vetor[j] > atual)
+            while (j >= 0 && vetor[j] > atual)   // vetor[ i ]  = 10     vetor[ j ] = 15
             {             
                 vetor[j+1] = vetor[j];
                 j--;
@@ -336,20 +384,22 @@ int main()
            vetor[j + 1 ] = atual;
             
         }
-        
 
+        int countNumeros = 1;
+        
         printf("\n\nMethod: Insection Sort !\n ");
-        for(int i =0; i < TAMANHO ; i++)
+        for(int i =0; i < TAMANHO - 1; i++)
         {
             printf("\nNúmero: %d - %d ", i+1 , vetor[i]);
+            countNumeros++;
             
         }
         clock_t fim = clock();
         double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
         printf("\nQuantidade de comparações: %d", countComparacao);
-        printf("\nTempo de Execução: %.6lf", tempo_execucao);
-
-        
+        printf("\nTempo de Execução: %.10lf", tempo_execucao);
+        printf("\n\nQuantidade de raizes: %d ", countNumeros);
+     
     }
 
 
@@ -358,69 +408,27 @@ int main()
 
     Arvb minhaArvore;
     minhaArvore.raiz = NULL;
+    int countNumeros = 1;
 
-    for(int i= 0; i<TAMANHO; i++)
+    for(int i= 0; i<TAMANHO-1; i++)
     {
-       inserir(&minhaArvore,vetor[i]);
+       inserir(&minhaArvore,vetorArvore[i]);
+       countNumeros++;
+
+       // O uso do & nesse caso é para passar o endereço de memória da variável minhaArvore para a função inserir
     }
 
     imprimir(minhaArvore.raiz);
 
 
-    // for(int i = 0; i < TAMANHO; i++)
-    // {
-    //     if(Arvore.principal == 0)
-    //     {
-    //         Arvore.principal = vetor[i];
-    //     }
-    //     else
-    //     {
-    //         if(vetor[i] > Arvore.principal)
-    //         {
 
-    //             if(Arvore.direito->principal == 0)
-    //             {
-    //                 Arvore.direito->principal = vetor[i];
-    //             }
-    //             else
-    //             {
-    //                 if (vetor[i] < Arvore.direito->principal)
-    //                 {
-    //                     Arvore.direito->esquerdo = vetor[i];
-    //                     Arvore.direito->esquerdo->principal = Arvore.direito->esquerdo;
-    //                 }
-    //                 else
-    //                 {
-    //                     Arvore.direito->direito = vetor[i];
-    //                     Arvore.direito->direito->principal = Arvore.direito->direito;
-    //                 }
-    //             }
+    printf("Quantidade de raizes: %d ", countNumeros);
 
-    //         }           
-    //         else
-    //         {
-    //              if(Arvore.esquerdo->principal == 0)
-    //             {
-    //                 Arvore.esquerdo->principal = vetor[i];
-    //             }
-    //             else
-    //             {
-    //                 if (vetor[i] < Arvore.esquerdo->principal)
-    //                 {
-    //                     Arvore.esquerdo->esquerdo = vetor[i];
-    //                     Arvore.esquerdo->esquerdo->principal = Arvore.esquerdo->esquerdo;
-    //                 }
-    //                 else
-    //                 {
-    //                     Arvore.esquerdo->direito = vetor[i];
-    //                     Arvore.esquerdo->direito->principal = Arvore.esquerdo->direito;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     i++;  
-    //}
 
+    printf("\n\nAgora nossa linda árvore binária Pós-Ordem ");
+
+
+    percorrer_pos_ordem(&minhaArvore);
    
    return 0;
    

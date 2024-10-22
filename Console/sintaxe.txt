@@ -2,15 +2,11 @@ printf( "%d", myNum );
 
 
 
-
-
 especificadores de formato
 
 int myNum = numero 
 
 printf("%d",myNum)
-
-
 
 
 
@@ -23,15 +19,12 @@ print("%c", myLetra);
 
 
 
-
-
 %f = float
 
 
 float preco = 50.6;
 
 printf("%f", preco);
-
 
 
 
@@ -46,15 +39,11 @@ char = armazena caracteres unicos como ou . os caracteres sao cercados por aspas
 
 
 
-
-
-
 Faça a saída do exemplo a seguir para mostrar apenas um dígito após o ponto decimal:
 
 
 float myScore = 9.5;
 printf("%.1f", myScore)       // apenas 1 digito apos o ponto decimal 
-
 
 
 
@@ -65,8 +54,6 @@ string = %s
 double = %lf 
 
 float = %f
-
-
 
 
 
@@ -83,18 +70,11 @@ printf("My number is %d and my letter is %c", myNum, myLetter);
 
 
 
-
-
-
-
 QUANDO FOR STRING, NOME GRANDE EU BOTO:
 
 char = " "   == aspas duplas 
 
 printf("%s", variavel)
-
-
-
 
 
 

@@ -146,10 +146,10 @@ void imprimir(No *raiz)
 {
     if(raiz != NULL)
     {
-        printf("\nraiz: %d ", raiz->conteudo);      /* ele pode pedir pra alterar aqui. Desse jeito ta em Pré ordem. primeiro a raiz, esquerda e direita*/ 
+        printf("\nraiz: %d ", raiz->conteudo);      /* Desse jeito ta em Pré ordem. primeiro a raiz, esquerda e direita*/ 
         imprimir(raiz->esquerdo);                   ///  em ordem  é esquerda, raiz e direita. 
         imprimir(raiz->direito);                    /// e pos ordem é a nossa, esquerda, direita e raiz
-                                                    //// ele pode pedir pra alterar essa primeira impressao em alguma outra ordem por exemplo
+                                                
     }
 }
 

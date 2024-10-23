@@ -171,7 +171,7 @@ void pos_ordem(No *no_pos)
     {
         pos_ordem(no_pos->direito);
     }
-    printf("%d\n", no_pos->conteudo);
+    printf("\n%d", no_pos->conteudo);
 }
 
 
@@ -199,27 +199,27 @@ int main()
 
     struct Alunos Aluno2;
 
-    strcpy(Aluno2.nome, "Alice ");
+    strcpy(Aluno2.nome, "Alice Louise ");
     Aluno2.matricula = 202302375189;
-    printf("\nInutil 1 : %s\n", Aluno2.nome);
+    printf("\nAluno 2 : %s\n", Aluno2.nome);
     printf("Matrícula: %lld\n", Aluno2.matricula);
 
     int ultimoDigito2 = Aluno2.matricula % 10;
 
     struct Alunos Aluno3;
 
-    strcpy(Aluno3.nome, "Pau Lino");
+    strcpy(Aluno3.nome, "Paulo");
     Aluno3.matricula = 202302450873;
-    printf("\nInutil 2 : %s\n", Aluno3.nome);
+    printf("\nAluno 3 : %s\n", Aluno3.nome);
     printf("Matrícula: %lld\n", Aluno3.matricula);
 
     int ultimoDigito3 = Aluno3.matricula % 10;
 
     struct Alunos Aluno4;
 
-    strcpy(Aluno4.nome, "Eduardo");
+    strcpy(Aluno4.nome, "Eduardo Vinicius");
     Aluno4.matricula = 202302674712;
-    printf("\nInutil 3 : %s\n", Aluno4.nome);
+    printf("\nAluno 4 : %s\n", Aluno4.nome);
     printf("Matrícula: %lld\n", Aluno4.matricula);
 
     int ultimoDigito4 = Aluno4.matricula % 10;
@@ -228,7 +228,7 @@ int main()
 
     strcpy(Aluno5.nome, "João Pedro");
     Aluno5.matricula = 202103689809;
-    printf("\nInutil 4 : %s\n", Aluno5.nome);
+    printf("\nAluno 5 : %s\n", Aluno5.nome);
     printf("Matrícula: %lld\n", Aluno5.matricula);
 
     int ultimoDigito5 = Aluno5.matricula % 10;
